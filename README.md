@@ -16,7 +16,7 @@
 
 |            (a)             |            (b)             |
 | :------------------------: | :------------------------: |
-| ![CDD](.\examples\CDD.png) | ![WHU](.\examples\WHU.png) |
+| ![CDD](./examples/CDD.png) | ![WHU](./examples/WHU.png) |
 
 
 
