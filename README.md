@@ -14,9 +14,9 @@
 
 >  Here gives some examples of change detection results, comparing with existing methods on CDD Dataset in Figure (a), and Figure(b) is the results on WHU Dataset.  
 
-|                             (a)                              |                             (b)                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![比较结果大图 - CDD](./examples/比较结果大图 - CDD.png) | ![比较结果大图 - WHU](./examples/比较结果大图 - WHU.png) |
+|                    (a)                    |                    (b)                    |
+| :---------------------------------------: | :---------------------------------------: |
+| ![比较结果大图 - CDD](.\examples\CDD.png) | ![比较结果大图 - WHU](.\examples\WHU.png) |
 
 
 
