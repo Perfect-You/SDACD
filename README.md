@@ -8,7 +8,7 @@ This software implements SDACD: An End-to-end Supervised Domain Adaptation Frame
 
 ​    Change Detection is a crucial but extremely challenging task of remote sensing image analysis, and much progress has been made with the rapid development of deep learning. However, most existing deep learning-based change detection methods try to elaborately design complicated neural networks with powerful feature representations, but ignore the universal domain shift induced by time-varying land cover changes, including luminance fluctuations and season changes between pre-event and post-event images, thereby producing sub-optimal results. In this paper, we propose an end-to-end Supervised Domain Adaptation framework for cross-domain Change Detection, namely SDACD, to effectively alleviate the domain shift between bi-temporal images for better change predictions. Specifically, our SDACD presents collaborative adaptations from both image and feature perspectives with supervised learning. Image adaptation exploits generative adversarial learning with cycle-consistency constraints to perform cross-domain style transformation, effectively narrowing the domain gap in a two-side generation fashion. As to feature adaptation, we extract domain-invariant features to align different feature distributions in the feature space, which could further reduce the domain gap of cross-domain images. To further improve the performance, we combine three types of bi-temporal images for the final change prediction, including the initial input bi-temporal images and two generated bi-temporal images from the pre-event and post-event domains. Extensive experiments and analyses on two benchmarks demonstrate the effectiveness and universality of our proposed framework. Notably, our framework pushes several representative baseline models up to new State-Of-The-Art records, achieving 97.34% and 92.36% on the CDD and WHU building datasets, respectively.
 
-![CD_v1.9](./examples/CD_v1.9.png)
+![CD_v1.9](E:\work\SDACD\examples\CD_v1.9.png)
 
 ## Installation
 
@@ -62,7 +62,7 @@ sbatch train.sh
 
 |            (a)             |            (b)             |
 | :------------------------: | :------------------------: |
-| ![CDD](./examples/CDD.png) | ![WHU](./examples/WHU.png) |
+| ![CDD](.\examples\CDD.png) | ![WHU](.\examples\WHU.png) |
 
 Evaluation of SDACD on different datasets with SNUNet, STANet, and DASNet as baseline:
 
@@ -78,6 +78,17 @@ Evaluation of SDACD on different datasets with SNUNet, STANet, and DASNet as bas
 | SDACD-DASNet |   92.85  **↓****0.43**   |   91.87  **↑****1.96**   |   92.35  **↑****0.78**   |   89.21  **↑****5.44**    |   90.46  **↓****0.56**   |   89.83  **↑****2.59**   |
 |    SNUNet    |          96.60           |          94.77           |          95.68           |           82.12           |          89.19           |          85.51           |
 | SDACD-SNUNet | **97.13**  **↑****0.53** | **97.56**  **↑****2.79** | **97.34**  **↑****1.66** | **93.85**  **↑****11.73** |   90.91  **↑****1.72**   | **92.36**  **↑****6.85** |
+
+The grid search results of λf and λCD. Here we fixed λcyc=10 and λi=1.
+
+| Baseline |  λf  | λCD  | P(%)  | R(%)  |   F(%)    |
+| :------: | :--: | :--: | :---: | :---: | :-------: |
+|          |  1   | 0.05 | 93.38 | 90.85 |   92.10   |
+|          |  1   | 0.1  | 93.85 | 90.91 | **92.36** |
+|  SNUNet  |  1   | 0.2  | 93.92 | 90.94 |   92.09   |
+|          | 0.5  | 0.1  | 93.31 | 91.28 |   92.28   |
+|          |  1   | 0.1  | 93.85 | 90.91 | **92.36** |
+|          |  2   | 0.1  | 94.56 | 89.99 |   92.22   |
 
 ## Acknowledgements
 
