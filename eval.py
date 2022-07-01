@@ -1,6 +1,6 @@
 import torch.utils.data
 from utils.parser import get_parser_with_args
-from utils.helpers import get_test_loaders, load_model, load_gan_discrimitor, load_gan_generator
+from utils.helpers import get_test_loaders, load_model_test, load_gan_discrimitor, load_gan_generator_test
 from tqdm import tqdm
 from sklearn.metrics import confusion_matrix
 import os
@@ -19,15 +19,15 @@ dev = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 test_loader = get_test_loaders(opt,batch_size=1)
 
-model = load_model(opt, dev)
+model = load_model_test(opt, dev)
 path_cd = 'tmp/checkpoint_cd_epoch_best.pt'   # the path of the model
 model.load_state_dict(torch.load(path_cd, map_location='cpu'))
 
-G_AB = load_gan_generator(opt, dev)
+G_AB = load_gan_generator_test(opt, dev)
 path_g_ab = 'tmp/checkpoint_gab_epoch_best.pt'
 G_AB.load_state_dict(torch.load(path_g_ab, map_location='cpu'))
 
-G_BA = load_gan_generator(opt, dev)
+G_BA = load_gan_generator_test(opt, dev)
 path_g_ba = 'tmp/checkpoint_gba_epoch_best.pt'
 G_BA.load_state_dict(torch.load(path_g_ba, map_location='cpu'))
 
