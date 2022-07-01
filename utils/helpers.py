@@ -8,7 +8,6 @@ from utils.dataloaders import (full_path_loader, full_path_loader_for_txt, full_
 from utils.metrics import jaccard_loss, dice_loss
 from utils.losses import hybrid_loss
 from models.Models import Siam_NestedUNet_Conc, SNUNet_ECAM
-from models.siamunet_dif import SiamUnet_diff
 from models.models_gan import GeneratorResNet, Discriminator,Discriminator_result, weights_init_normal
 import random
 from torch.autograd import Variable
