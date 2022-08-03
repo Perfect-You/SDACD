@@ -132,20 +132,21 @@ if __name__ == '__main__':
             model.load_state_dict(checkpoint_cd)
         print("=> loaded checkpoint '{}' (epoch {})" .format(opt.resume_cd, opt.start_epoch))
 
-    checkpoint_g_ab = torch.load(opt.resume_g_ab,map_location='cpu')
-    checkpoint_g_ba = torch.load(opt.resume_g_ba,map_location='cpu')
-    checkpoint_d_a = torch.load(opt.resume_d_a,map_location='cpu')
-    checkpoint_d_b = torch.load(opt.resume_d_b,map_location='cpu')
-    G_AB.load_state_dict(checkpoint_g_ab)
-    G_BA.load_state_dict(checkpoint_g_ba)
-    D_A.load_state_dict(checkpoint_d_a)
-    D_B.load_state_dict(checkpoint_d_b)
-    
-    model_dict = model.state_dict()
-    pretrained_dict = torch.load(opt.pretrain_cd,map_location='cpu')
-    pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
-    model_dict.update(pretrained_dict)
-    model.load_state_dict(model_dict)    
+    # if you pre-train the GAN or CDNet, use these code to load the pre-trained model
+    # checkpoint_g_ab = torch.load(opt.resume_g_ab,map_location='cpu')
+    # checkpoint_g_ba = torch.load(opt.resume_g_ba,map_location='cpu')
+    # checkpoint_d_a = torch.load(opt.resume_d_a,map_location='cpu')
+    # checkpoint_d_b = torch.load(opt.resume_d_b,map_location='cpu')
+    # G_AB.load_state_dict(checkpoint_g_ab)
+    # G_BA.load_state_dict(checkpoint_g_ba)
+    # D_A.load_state_dict(checkpoint_d_a)
+    # D_B.load_state_dict(checkpoint_d_b)
+    #
+    # model_dict = model.state_dict()
+    # pretrained_dict = torch.load(opt.pretrain_cd,map_location='cpu')
+    # pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+    # model_dict.update(pretrained_dict)
+    # model.load_state_dict(model_dict)
     
     # # G_AB.load_state_dict({k.replace('module.', ''): v for k, v in checkpoint_g_ab.items()})
     # # G_BA.load_state_dict({k.replace('module.', ''): v for k, v in checkpoint_g_ba.items()})
@@ -154,7 +155,7 @@ if __name__ == '__main__':
     # print("=> loaded checkpoint '{}' (epoch {})".format(opt.resume_g_ab, opt.start_epoch))
 
     optimizer = torch.optim.Adam(model.parameters(), lr=opt.learning_rate)  # Be careful when you adjust learning rate, you can refer to the linear scaling rule
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [10,20,30,40], 0.5)
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [70,80,90,100,105,110], 0.5)
     optimizer_G = torch.optim.Adam(itertools.chain(G_AB.parameters(), G_BA.parameters()), lr=opt.lr_gan, betas=(opt.gan_b1, opt.gan_b2))
     optimizer_D_A = torch.optim.Adam(D_A.parameters(), lr=opt.lr_gan, betas=(opt.gan_b1, opt.gan_b2))
     optimizer_D_B = torch.optim.Adam(D_B.parameters(), lr=opt.lr_gan, betas=(opt.gan_b1, opt.gan_b2))
