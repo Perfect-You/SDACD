@@ -20,6 +20,8 @@ pip/conda install pytorch>=1.7.1, tqdm, tensorboardX, opencv-python, pillow, num
 
 ## Run demo
 
+Download the datasets from [Baidu Netdisk](https://pan.baidu.com/s/1vhF0r93TxPsOgxxJwcmUDA)(Extraction code:rvbv).
+
 Generate the train.txt, val.txt and test.txt
 
 ```
